@@ -12,10 +12,10 @@ import static base.Constants.BASE_URL;
 
 public abstract class BaseTest {
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+   protected static WebDriver driver;
+   protected  static WebDriverWait wait;
 
-    public void setup(){
+    public static void setup(){
         System.out.println(System.getProperty("user.dir"));
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/src/test/resources/drivers/chromedriver.exe");
 
@@ -25,17 +25,18 @@ public abstract class BaseTest {
         openBrowser();
 
     }
-    public void openBrowser() {
+    public static  void openBrowser() {
         driver.get(BASE_URL);
         driver.manage().window().maximize();
     }
 
-    public void downScroll() {
-        JavascriptExecutor jsx = (JavascriptExecutor) driver;
-        jsx.executeScript("window.scrollBy(0,450)");
+    public static void downScroll() {
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
-    public void closeBrowser(){
+    public static void closeBrowser(){
+
         driver.close();
     }
 }

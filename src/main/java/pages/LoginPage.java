@@ -16,9 +16,10 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    String loginUrl=BASE_URL+"uye-girisi";
+    //String loginUrl=BASE_URL+"uye-girisi";
 
     public void login(String username,String password){
+        String loginUrl=BASE_URL+"uye-girisi";
         driver.get(loginUrl);
 
         WebElement userInput= driver.findElement(By.id("L-UserNameField"));
@@ -29,7 +30,11 @@ public class LoginPage {
 
         WebElement loginButton=driver.findElement(By.id("gg-login-enter"));
         loginButton.click();
-
-
     }
+
+    public String getUserName(){
+        WebElement user=driver.findElement(By.xpath("//div[@title='Hesabım']//span"));
+       return user.getText();
+    }
+
 }
